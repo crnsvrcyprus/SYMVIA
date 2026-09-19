@@ -72,10 +72,9 @@ def sohbet():
         return jsonify(basari=True, cevap=cevap)
 
     except AIServiceError:
-        return jsonify(
-            basari=False,
-            hata="Asistan şu anda yanıt veremiyor. Lütfen daha sonra deneyin."
-        ), 503
+        except AIServiceError:
+        current_app.logger.exception("AI response failed")
+        return jsonify(basari=False, hata='Asistan şu anda yanıt veremiyor; lütfen daha sonra deneyin.'), 503
 
 
 @api_bp.post("/leads")
