@@ -31,6 +31,7 @@ class AIService:
                 timeout=20,
             )
 
+            if response.status_code >= 400: print("Groq error:", response.status_code, response.json().get("error", {}).get("message", "")[:300])
             response.raise_for_status()
             data = response.json()
 
