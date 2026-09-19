@@ -72,7 +72,6 @@ def sohbet():
         return jsonify(basari=True, cevap=cevap)
 
     except AIServiceError:
-        except AIServiceError:
         current_app.logger.exception("AI response failed")
         return jsonify(basari=False, hata='Asistan şu anda yanıt veremiyor; lütfen daha sonra deneyin.'), 503
 
